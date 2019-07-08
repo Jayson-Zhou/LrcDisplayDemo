@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="LrcView">
+        <attr name="lose_focus_size" format="dimension" />
+        <attr name="focus_size" format="dimension" />
+        <attr name="lose_focus_color" format="color" />
+        <attr name="focus_color" format="color" />
+    </declare-styleable>
+</resources>

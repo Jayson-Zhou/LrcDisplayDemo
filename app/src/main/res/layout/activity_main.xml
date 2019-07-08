@@ -15,6 +15,10 @@
     <com.example.lrcdisplaydemo.LrcView
         android:id="@+id/text"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        app:focus_color="@color/colorAccent"
+        app:focus_size="25sp"
+        app:lose_focus_color="@color/colorPrimary"
+        app:lose_focus_size="20sp" />
 
 </LinearLayout>

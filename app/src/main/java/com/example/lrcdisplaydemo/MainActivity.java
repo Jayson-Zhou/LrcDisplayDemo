@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     private LrcView mLrcView;
     private List<Integer> mTimeList;
+    private List<String> mWordList;
     private MediaPlayer mPlayer;
 
     private Thread lrcThread;
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (mPlayer != null && !mPlayer.isPlaying()) {
-//                    mPlayer.start();
+                    mPlayer.start();
                     // 注意，因为实现逻辑是让歌词高亮一段时间，而不是等待一段时间再高亮，所以先进行一次刷新
                     mLrcView.invalidate();
                     lrcThread.start();
@@ -49,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
         LrcHandle lrcHandler = new LrcHandle();
         lrcHandler.loadLrcFile(getResources().openRawResource(R.raw.testlrc));
         mTimeList = lrcHandler.getTimeList();
+        mWordList = lrcHandler.getWords();
+        mLrcView.setDataList(mWordList);
 
         // 实现的逻辑是让下一句歌词出现时间减去当前歌词出现时间的差值作为高亮等待时间，
         // lrc中并没有歌曲结束的时间，要从MediaPlayer中获取，并添加到时间集合中
@@ -77,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     i++;
-                    if (i == mTimeList.size()) {
+                    if (i == mTimeList.size() - 1) {
                         if (mPlayer != null && mPlayer.isPlaying()) {
                             mPlayer.stop();
                             mPlayer.release();
